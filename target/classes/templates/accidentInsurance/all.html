@@ -1,0 +1,102 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org" >
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+    <link rel="stylesheet" href="https://fonts.googleapis.com/icon?family=Material+Icons">
+    <link rel="stylesheet" href="https://code.getmdl.io/1.3.0/material.indigo-orange.min.css">
+    <script defer src="https://code.getmdl.io/1.3.0/material.min.js"></script>
+    <style>
+        body {
+            display: flex;
+            height: 100vh;
+        }
+        .mdc-list {
+            display: flex;
+            flex-direction: column;
+        }
+        .mdc-drawer__header {
+            padding: 10px;
+        }
+        .mdc-list-item {
+            padding: 10px;
+            display: flex;
+            flex-direction: row;
+            text-decoration: none;
+        }
+        .mdc-list-item__text {
+            padding-left: 10px;
+        }
+        .mdc-drawer {
+            border-right-color: rgba(0,0,0,.12);
+            border-right-style: solid;
+            width: 10%;
+        }
+    </style>
+</head>
+<body>
+<aside class="mdc-drawer">
+    <div class="mdc-drawer__header">
+        <h3 class="mdc-drawer__title">Insured</h3>
+        <h6 class="mdc-drawer__subtitle">Java + Spring</h6>
+    </div>
+    <div class="mdc-drawer__content">
+        <nav class="mdc-list">
+            <a class="mdc-list-item" href="/insurance/">
+                <i class="material-icons mdc-list-item__graphic" aria-hidden="true">send</i>
+                <span class="mdc-list-item__text">Household Insurances</span>
+            </a>
+            <a class="mdc-list-item" href="/houseAndApartmentInsurance/">
+                <i class="material-icons mdc-list-item__graphic" aria-hidden="true">send</i>
+                <span class="mdc-list-item__text">House And Apartment Insurances</span>
+            </a>
+            <a class="mdc-list-item" href="/travelInsurance/">
+            <i class="material-icons mdc-list-item__graphic" aria-hidden="true">send</i>
+            <span class="mdc-list-item__text">Travel Insurances</span>
+            </a>
+            <a class="mdc-list-item" href="/accidentInsurance/">
+                <i class="material-icons mdc-list-item__graphic" aria-hidden="true">send</i>
+                <span class="mdc-list-item__text">Accident Insurances</span>
+            </a>
+            <a class="mdc-list-item" href="/user/">
+                <i class="material-icons mdc-list-item__graphic" aria-hidden="true">drafts</i>
+                <span class="mdc-list-item__text">Users</span>
+            </a>
+        </nav>
+    </div>
+</aside>
+<div style="display: flex; flex-direction: column; width: 100%; overflow: auto">
+    <h1 style="margin: 10px;">Accident Insurances</h1>
+    <a href="/accidentInsurance/add" class="mdl-button mdl-js-button mdl-button--fab mdl-button--mini-fab mdl-button--colored" style="margin: 10px; min-height: 40px">
+        <i class="material-icons">add</i>
+    </a>
+    <table class="mdl-data-table mdl-js-data-table mdl-data-table mdl-shadow--2dp" style="margin: 10px">
+        <thead>
+        <tr>
+            <th class="mdl-data-table__cell--non-numeric">ID</th>
+            <th class="mdl-data-table__cell--non-numeric">Monthly Price</th>
+            <th class="mdl-data-table__cell--non-numeric">Date of creation</th>
+            <th class="mdl-data-table__cell--non-numeric">Start date</th>
+            <th class="mdl-data-table__cell--non-numeric">End Date</th>
+            <th class="mdl-data-table__cell--non-numeric">User</th>
+        </tr>
+        </thead>
+        <tbody>
+        <tr th:each="accidentInsurance: ${accidentInsurances.values()}">
+            <td class="mdl-data-table__cell--non-numeric">
+                <a th:href="@{'/accidentInsurance/id/' + ${accidentInsurance.id}}" th:text="${accidentInsurance.id}"></a>
+            </td>
+            <td th:text="${accidentInsurance.monthlyPrice}" class="mdl-data-table__cell--non-numeric"></td>
+            <td th:text="${accidentInsurance.date}" class="mdl-data-table__cell--non-numeric"></td>
+            <td th:text="${accidentInsurance.startDate}" class="mdl-data-table__cell--non-numeric"></td>
+            <td th:text="${accidentInsurance.endDate}" class="mdl-data-table__cell--non-numeric"></td>
+            <td th:text="${users.get(accidentInsurance.userId).name}" class="mdl-data-table__cell--non-numeric"></td>
+            <td class="mdl-data-table__cell--non-numeric">
+                <a th:href="@{'/accidentInsurance/modify/' + ${accidentInsurance.id} }" th:text="${'modify'}"></a>
+            </td>
+        </tr>
+        </tbody>
+    </table>
+</div>
+</body>
+</html>

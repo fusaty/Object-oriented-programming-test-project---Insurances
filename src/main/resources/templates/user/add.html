@@ -1,0 +1,132 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org" >
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+    <link rel="stylesheet" href="https://fonts.googleapis.com/icon?family=Material+Icons">
+    <link rel="stylesheet" href="https://code.getmdl.io/1.3.0/material.indigo-orange.min.css">
+    <script defer src="https://code.getmdl.io/1.3.0/material.min.js"></script>
+    <style>
+        body {
+            display: flex;
+            height: 100vh;
+        }
+        .mdc-list {
+            display: flex;
+            flex-direction: column;
+        }
+        .mdc-drawer__header {
+            padding: 10px;
+        }
+        .mdc-list-item {
+            padding: 10px;
+            display: flex;
+            flex-direction: row;
+            text-decoration: none;
+        }
+        .mdc-list-item__text {
+            padding-left: 10px;
+        }
+        .mdc-drawer {
+            border-right-color: rgba(0,0,0,.12);
+            border-right-style: solid;
+            width: 10%;
+        }
+        form {
+            display: flex;
+            flex-direction: column;
+            margin: 10px;
+        }
+    </style>
+</head>
+<body>
+<aside class="mdc-drawer">
+    <div class="mdc-drawer__header">
+        <h3 class="mdc-drawer__title">Insured</h3>
+        <h6 class="mdc-drawer__subtitle">Java + Spring</h6>
+    </div>
+    <div class="mdc-drawer__content">
+        <nav class="mdc-list">
+            <a class="mdc-list-item" href="/insurance/">
+                <i class="material-icons mdc-list-item__graphic" aria-hidden="true">send</i>
+                <span class="mdc-list-item__text">Household Insurances</span>
+            </a>
+            <a class="mdc-list-item" href="/houseAndApartmentInsurance/">
+                <i class="material-icons mdc-list-item__graphic" aria-hidden="true">send</i>
+                <span class="mdc-list-item__text">House And Apartment Insurances</span>
+            </a>
+            <a class="mdc-list-item" href="/travelInsurance/">
+                <i class="material-icons mdc-list-item__graphic" aria-hidden="true">send</i>
+                <span class="mdc-list-item__text">Travel Insurances</span>
+            </a>
+            <a class="mdc-list-item" href="/accidentInsurance/">
+                <i class="material-icons mdc-list-item__graphic" aria-hidden="true">send</i>
+                <span class="mdc-list-item__text">Accident Insurances</span>
+            </a>
+            <a class="mdc-list-item" href="/user/">
+                <i class="material-icons mdc-list-item__graphic" aria-hidden="true">drafts</i>
+                <span class="mdc-list-item__text">Users</span>
+            </a>
+        </nav>
+    </div>
+</aside>
+<div style="display: flex; flex-direction: column; width: 100%; overflow: auto">
+    <h1 style="margin: 10px;">Add User</h1>
+    <form action="#" th:action="@{/user/add}" th:object="${user}" method="post">
+        <div class="mdl-textfield mdl-js-textfield">
+            <span>ID (cannot be duplicate):&nbsp;</span>
+            <input class="mdl-textfield__input" type="number" id="id" th:field="*{id}" /></p>
+            <p th:if="${#fields.hasErrors('id')}" th:errors="*{id}"></p><br>
+            <label class="mdl-textfield__label" for="id">ID</label>
+        </div>
+        <div class="mdl-textfield mdl-js-textfield">
+            <input class="mdl-textfield__input" type="text" id="name" th:field="*{name}" /></p>
+            <p th:if="${#fields.hasErrors('name')}" th:errors="*{name}"></p><br>
+            <label class="mdl-textfield__label" for="name">Name</label>
+        </div>
+        <div class="mdl-textfield mdl-js-textfield">
+            <input class="mdl-textfield__input" type="text" id="surname" th:field="*{surname}" /></p>
+            <p th:if="${#fields.hasErrors('surname')}" th:errors="*{surname}"></p><br>
+            <label class="mdl-textfield__label" for="surname">Surname</label>
+        </div>
+        <div class="mdl-textfield mdl-js-textfield">
+            <input class="mdl-textfield__input" type="text" id="email" th:field="*{email}" /></p>
+            <p th:if="${#fields.hasErrors('email')}" th:errors="*{email}"></p><br>
+            <label class="mdl-textfield__label" for="email">E-mail</label>
+        </div>
+        <div class="mdl-textfield mdl-js-textfield">
+            <input class="mdl-textfield__input" type="text" id="birthNumber" th:field="*{birthNumber}" /></p>
+            <p th:if="${#fields.hasErrors('birthNumber')}" th:errors="*{birthNumber}"></p><br>
+            <label class="mdl-textfield__label" for="birthNumber">Birth Number</label>
+        </div>
+        <div class="mdl-textfield mdl-js-textfield">
+            <input class="mdl-textfield__input" type="text" id="postalCode" th:field="*{postalCode}" /></p>
+            <p th:if="${#fields.hasErrors('postalCode')}" th:errors="*{postalCode}"></p><br>
+            <label class="mdl-textfield__label" for="postalCode">Postal Code</label>
+        </div>
+        <div class="mdl-textfield mdl-js-textfield">
+            <input class="mdl-textfield__input" type="text" id="city" th:field="*{city}" /></p>
+            <p th:if="${#fields.hasErrors('city')}" th:errors="*{city}"></p><br>
+            <label class="mdl-textfield__label" for="city">City address</label>
+        </div>
+        <div class="mdl-textfield mdl-js-textfield">
+            <input class="mdl-textfield__input" type="text" id="street" th:field="*{street}" /></p>
+            <p th:if="${#fields.hasErrors('street')}" th:errors="*{street}"></p><br>
+            <label class="mdl-textfield__label" for="street">Street Address</label>
+        </div>
+        <div class="mdl-textfield mdl-js-textfield">
+            <input class="mdl-textfield__input" type="text" id="house" th:field="*{house}" /></p>
+            <p th:if="${#fields.hasErrors('house')}" th:errors="*{house}"></p><br>
+            <label class="mdl-textfield__label" for="house">House Address</label>
+        </div>
+        <div class="mdl-textfield mdl-js-textfield">
+            <input class="mdl-textfield__input" type="text" id="correAddress" th:field="*{correAddress}" /></p>
+            <label class="mdl-textfield__label" for="correAddress">Correspondence Address</label>
+        </div>
+
+        <input type="submit" value="Submit" class="mdl-button mdl-js-button mdl-button--raised" style="width: fit-content;"/>
+    </form>
+</div>
+</body>
+</html>
+
